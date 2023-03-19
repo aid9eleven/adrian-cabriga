@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis&family=Montserrat&display=swap');
+/* 
+    font-family: 'Montserrat', sans-serif; https://fonts.google.com/specimen/Montserrat
+    font-family: 'Dosis', sans-serif; https://fonts.google.com/specimen/Dosis
+*/
+
+:root {
+    --very-dark-blue-bg: #2a3950;
+
+    /* Haze Theme */
+    --haze-light-purple: #c6ceff;
+    --haze-light-blue: #84b7fe;
+    --haze-blue: #258bd6;
+    --haze-dark-blue: #0f6bac;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.app {
+    min-height: 100vh;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    position: sticky;
+    top: 0;
+    margin-bottom: 2rem;
+    padding: 2rem 5rem;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--haze-dark-blue);
+    text-transform: uppercase;
+}
+
+.header *::selection {
+    background-color: var(--very-dark-blue-bg);
+    color: white;
+}
+
+.home {
+    padding: 1rem;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.home:hover {
+    border-color: var(--haze-dark-blue);
+}
+
+.header-navigation {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.header-navigation > h4 {
+    cursor: pointer;
+    margin-left: 3rem;
+    padding: 1rem;
+    border-bottom: 3px solid transparent;
+    transition: 0.3s ease-in-out;
+}
+
+.header-navigation > h4:hover {
+    border-color: var(--haze-dark-blue);
+}
+
+.greeting-card {
+    width: fit-content;
+    background-color: var(--haze-blue);
+    color: white;
+    padding: 3rem;
+    padding-left: 5rem;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+
+.greeting-card *::selection {
+    background-color: var(--very-dark-blue-bg);
+}
+
+.greeting-card > h1 {
+    font-family: 'Dosis', sans-serif;
+    font-size: 3rem;
+    font-weight: normal;
+    line-height: 4rem;
+    margin-bottom: 5rem;
+    cursor: default;
+}
+
+.greeting-card > a {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    padding: 1rem;
+    background-color: var(--haze-blue);
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: none;
+    border: 2px solid white;
+    cursor: pointer;
+}
+
+.greeting-card > a:hover {
+    background-color: var(--haze-dark-blue);
+}
+
+.light-primary-color {
+    background-color: white;
+}
+
+.dark-primary-color {
+    background-color: var(--very-dark-blue-bg);
+}
