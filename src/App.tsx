@@ -1,5 +1,5 @@
 import './App.css'
-import { MailIcon } from './googleIcons/googleIcons'
+import IntroductionSection from './sections/IntroductionSection'
 
 function App() {
 
@@ -18,17 +18,7 @@ function App() {
 
         </h3>
       </div>
-      <div className="greeting-card">
-        <h1>
-          Hi, I'm Aid. <br/>
-          A software developer and designer <br/>
-          from the Philippines. Nice to meet you. <br/>
-        </h1>
-        <a href="mailto:aid9eleven@gmail.com">
-          <MailIcon/>
-          <span>&emsp;Send me an  email</span>
-        </a>
-      </div>
+      <IntroductionSection/>
     </div>
   )
 }

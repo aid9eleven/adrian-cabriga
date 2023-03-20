@@ -5,13 +5,15 @@
 */
 
 :root {
+    --light-gray-bg: #f1f3f4;
+    --light-blue-bg: #deeaf6;
     --very-dark-blue-bg: #2a3950;
 
-    /* Haze Theme */
-    --haze-light-purple: #c6ceff;
-    --haze-light-blue: #84b7fe;
-    --haze-blue: #258bd6;
-    --haze-dark-blue: #0f6bac;
+    --light-purple: #c6ceff;
+    --light-blue: #84b7fe;
+    --blue: #258bd6;
+    --dark-blue: #0f6bac;
+    --pink: #ffa4fc;
 }
 
 * {
@@ -32,13 +34,8 @@
     margin-bottom: 2rem;
     padding: 2rem 5rem;
     font-family: 'Montserrat', sans-serif;
-    color: var(--haze-dark-blue);
+    color: var(--dark-blue);
     text-transform: uppercase;
-}
-
-.header *::selection {
-    background-color: var(--very-dark-blue-bg);
-    color: white;
 }
 
 .home {
@@ -49,7 +46,7 @@
 }
 
 .home:hover {
-    border-color: var(--haze-dark-blue);
+    border-color: var(--dark-blue);
 }
 
 .header-navigation {
@@ -67,30 +64,27 @@
 }
 
 .header-navigation > h4:hover {
-    border-color: var(--haze-dark-blue);
+    border-color: var(--dark-blue);
+}
+
+.introduction-section {
+    background-color: var(--light-blue-bg);
+    position: relative;
+    margin-top: 5rem;
+    height: 30rem;
 }
 
 .greeting-card {
-    width: fit-content;
-    background-color: var(--haze-blue);
+    position: absolute;
+    top: -5rem;
+    background-color: var(--blue);
     color: white;
     padding: 3rem;
     padding-left: 5rem;
     border-top-right-radius: 1rem;
     border-bottom-right-radius: 1rem;
-}
-
-.greeting-card *::selection {
-    background-color: var(--very-dark-blue-bg);
-}
-
-.greeting-card > h1 {
-    font-family: 'Dosis', sans-serif;
-    font-size: 3rem;
-    font-weight: normal;
-    line-height: 4rem;
-    margin-bottom: 5rem;
-    cursor: default;
+    overflow: hidden;
+    animation: greeting-card-entry 0.5s ease-in;
 }
 
 .greeting-card > a {
@@ -98,16 +92,83 @@
     align-items: center;
     width: fit-content;
     padding: 1rem;
-    background-color: var(--haze-blue);
+    background-color: var(--blue);
     color: white;
     font-family: 'Montserrat', sans-serif;
     text-decoration: none;
     border: 2px solid white;
     cursor: pointer;
+    white-space: nowrap;
+    transition: 0.3s ease-in-out;
 }
 
 .greeting-card > a:hover {
-    background-color: var(--haze-dark-blue);
+    background-color: var(--dark-blue);
+}
+
+.greeting-text {
+    display: block;
+    font-family: 'Dosis', sans-serif;
+    font-size: 3rem;
+    font-weight: normal;
+    line-height: 4rem;
+    margin-bottom: 2rem;
+    cursor: default;
+    white-space: nowrap;
+}
+
+.greeting-text-hovered-text {
+    transition: 0.3s ease-in-out;
+}
+
+.greeting-text-hovered-text:hover {
+    color: var(--pink);
+}
+
+.greeting-text-hovered-text:hover ~ .small-greeting-text {
+    animation: small-greeting-text-typewriter 0.5s steps(7) forwards;
+}
+
+.small-greeting-text {
+    display: block;
+    width: 0;
+    color: var(--pink);
+    font-size: 1.5rem;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+@keyframes small-greeting-text-typewriter {
+    from {
+        width: 0;
+    }
+    to {
+        width: 7em;
+    }
+}
+
+@keyframes greeting-card-entry {
+    from {
+        width: 0;
+        padding-left: 0;
+    }
+    to {
+        width: 38rem;
+    }
+}
+
+.send-email-button-icon {
+    width: 1.5em;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+
+.header *::selection,
+.greeting-card *::selection {
+    background-color: var(--very-dark-blue-bg);
+    color: white;
 }
 
 .light-primary-color {

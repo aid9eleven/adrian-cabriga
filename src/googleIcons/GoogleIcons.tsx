@@ -3,3 +3,9 @@ export function MailIcon() {
     <span className="material-symbols-outlined">mail</span>
   )
 }
+
+export function SendIcon() {
+  return (
+    <span className="material-symbols-outlined">send</span>
+  )
+}
