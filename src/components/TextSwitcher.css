@@ -1,0 +1,59 @@
+.text-switcher {
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: -0.5ch;
+}
+
+.text-switcher-base {
+  visibility: hidden;
+}
+
+.text-switcher-children-wrapper.on-state.up {
+  top: -100%;
+}
+
+.text-switcher-children-wrapper.on-state.down {
+  top: 0;
+}
+
+.text-switcher-children-wrapper.on-state.left {
+  left: -100%;
+}
+
+.text-switcher-children-wrapper.on-state.right {
+  left: 0;
+}
+
+.text-switcher-children-wrapper.up {
+  flex-direction: column-reverse;
+  top: 0;
+}
+
+.text-switcher-children-wrapper.down {
+  flex-direction: column;
+  top: -100%;
+}
+
+.text-switcher-children-wrapper.left {
+  flex-direction: row-reverse;
+  top: 0;
+  left: 0;
+}
+
+.text-switcher-children-wrapper.right {
+  flex-direction: row;
+  top: 0;
+  left: -100%;
+}
+
+.text-switcher-children-wrapper {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  transition: 0.2s ease-in-out;
+}
+
+.text-switcher-styled-child {
+  background-color: var(--very-dark-blue-bg);
+}

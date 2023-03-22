@@ -19,6 +19,7 @@
 * {
     padding: 0;
     margin: 0;
+    user-select: none;
 }
 
 .app {
@@ -78,7 +79,6 @@
     position: absolute;
     top: -5rem;
     background-color: var(--blue);
-    color: white;
     padding: 3rem;
     padding-left: 5rem;
     border-top-right-radius: 1rem;
@@ -87,27 +87,9 @@
     animation: greeting-card-entry 0.5s ease-in;
 }
 
-.greeting-card > a {
-    display: flex;
-    align-items: center;
-    width: fit-content;
-    padding: 1rem;
-    background-color: var(--blue);
-    color: white;
-    font-family: 'Montserrat', sans-serif;
-    text-decoration: none;
-    border: 2px solid white;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: 0.3s ease-in-out;
-}
-
-.greeting-card > a:hover {
-    background-color: var(--dark-blue);
-}
-
 .greeting-text {
     display: block;
+    color: white;
     font-family: 'Dosis', sans-serif;
     font-size: 3rem;
     font-weight: normal;
@@ -118,33 +100,55 @@
 }
 
 .greeting-text-hovered-text {
-    transition: 0.3s ease-in-out;
-}
-
-.greeting-text-hovered-text:hover {
     color: var(--pink);
+    animation: greeting-text-color-change 0.3s ease-in-out both paused;
 }
 
 .greeting-text-hovered-text:hover ~ .small-greeting-text {
-    animation: small-greeting-text-typewriter 0.5s steps(7) forwards;
+    animation-play-state: running;
 }
 
 .small-greeting-text {
     display: block;
-    width: 0;
     color: var(--pink);
     font-size: 1.5rem;
     overflow: hidden;
     white-space: nowrap;
+    animation: small-greeting-text-typewriter 0.4s steps(7) both 0.5s paused;
 }
 
-@keyframes small-greeting-text-typewriter {
-    from {
-        width: 0;
-    }
-    to {
-        width: 7em;
-    }
+.greeting-card > a {
+    display: block;
+    width: 11.5em;
+    padding: 1em;
+    background-color: var(--blue);
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: none;
+    border: 2px solid white;
+    cursor: pointer;
+    overflow: hidden;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.greeting-card > a:hover {
+    background-color: var(--dark-blue);
+}
+
+.greeting-card > a:hover .send-email-button-wrapper{
+    margin-left: -2.5em;
+}
+
+.send-email-button-wrapper {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    transition: 0.3s ease-in-out;
+    margin-left: 0;
+}
+
+.send-email-button-text {
+    margin: 0 1em;
 }
 
 @keyframes greeting-card-entry {
@@ -157,18 +161,22 @@
     }
 }
 
-.send-email-button-icon {
-    width: 1.5em;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
+@keyframes greeting-text-color-change {
+    from {
+        color: white;
+    }
+    to {
+        color: var(--pink);
+    }
 }
 
-
-.header *::selection,
-.greeting-card *::selection {
-    background-color: var(--very-dark-blue-bg);
-    color: white;
+@keyframes small-greeting-text-typewriter {
+    from {
+        width: 0;
+    }
+    to {
+        width: 7em;
+    }
 }
 
 .light-primary-color {
@@ -177,4 +185,9 @@
 
 .dark-primary-color {
     background-color: var(--very-dark-blue-bg);
+}
+
+/* overriding classes */
+.animating-element {
+    animation-play-state: running !important;
 }
