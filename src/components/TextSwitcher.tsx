@@ -3,11 +3,13 @@ import { CSS_CONSTANTS } from "../constants/cssClassConstants";
 import "./TextSwitcher.css";
 
 interface IProps {
-  children?: ReactNode,
+  children?: string,
+  className?: string,
   direction?: number;
   isSwitched?: boolean;
-  onMouseOver?: React.MouseEventHandler<HTMLDivElement>;
   onClick?: React.MouseEventHandler<HTMLDivElement>;
+  onMouseOver?: React.MouseEventHandler<HTMLDivElement>;
+  onMouseLeave?: React.MouseEventHandler<HTMLDivElement>;
   style?: React.CSSProperties;
 }
 
@@ -24,9 +26,10 @@ function TextSwitcher(props: IProps) {
 
   return (
     <div 
-      className="text-switcher"
-      onMouseOver={props.onMouseOver}
+      className={`text-switcher ${[props.className]}`}
       onClick={props.onClick}
+      onMouseOver={props.onMouseOver}
+      onMouseLeave={props.onMouseLeave}
       style={props.style}
     >
       <div className="text-switcher-base">{props.children}</div>

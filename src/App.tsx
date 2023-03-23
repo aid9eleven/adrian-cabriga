@@ -4,7 +4,7 @@ import IntroductionSection from './sections/IntroductionSection'
 function App() {
 
   return (
-    <div className="app light-primary-color">
+    <div className="app">
       <div className="header">
         <h2 className="home">
           Aid

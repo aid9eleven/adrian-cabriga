@@ -1,18 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Dosis&family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dosis&family=Montserrat&family=Shadows+Into+Light&display=swap');
 /* 
     font-family: 'Montserrat', sans-serif; https://fonts.google.com/specimen/Montserrat
     font-family: 'Dosis', sans-serif; https://fonts.google.com/specimen/Dosis
+    font-family: 'Shadows Into Light', cursive; https://fonts.google.com/specimen/Shadows+Into+Light
 */
 
 :root {
     --light-gray-bg: #f1f3f4;
-    --light-blue-bg: #deeaf6;
-    --very-dark-blue-bg: #2a3950;
+    --very-light-blue-bg: #deeaf6;
+    --light-blue-bg: #8ab8e7;
+    --blue-gray-bg: #a2bfdc;
+    --dull-blue-bg: #567fa8;
 
     --light-purple: #c6ceff;
     --light-blue: #84b7fe;
+    --light-orange: #efc379;
     --blue: #258bd6;
-    --dark-blue: #0f6bac;
+    --dark-blue: #26415c;
     --pink: #ffa4fc;
 }
 
@@ -24,30 +28,30 @@
 
 .app {
     min-height: 100vh;
+    background-color: var(--light-blue-bg);
 }
 
 .header {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    position: sticky;
     top: 0;
     margin-bottom: 2rem;
-    padding: 2rem 5rem;
+    padding: 2rem 5rem 1rem 5rem;
     font-family: 'Montserrat', sans-serif;
-    color: var(--dark-blue);
+    color: white;
     text-transform: uppercase;
 }
 
 .home {
-    padding: 1rem;
+    padding: 1rem 2rem 1rem 0;
     border-bottom: 3px solid transparent;
     cursor: pointer;
     transition: 0.3s ease-in-out;
 }
 
 .home:hover {
-    border-color: var(--dark-blue);
+    border-color: white;
 }
 
 .header-navigation {
@@ -59,32 +63,46 @@
 .header-navigation > h4 {
     cursor: pointer;
     margin-left: 3rem;
-    padding: 1rem;
+    padding: 1rem 0;
     border-bottom: 3px solid transparent;
     transition: 0.3s ease-in-out;
 }
 
 .header-navigation > h4:hover {
-    border-color: var(--dark-blue);
+    border-color: white;
 }
 
 .introduction-section {
-    background-color: var(--light-blue-bg);
-    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin-top: 5rem;
-    height: 30rem;
 }
 
 .greeting-card {
-    position: absolute;
-    top: -5rem;
-    background-color: var(--blue);
+    width: fit-content;
+    background-color: var(--dull-blue-bg);
     padding: 3rem;
     padding-left: 5rem;
     border-top-right-radius: 1rem;
     border-bottom-right-radius: 1rem;
     overflow: hidden;
-    animation: greeting-card-entry 0.5s ease-in;
+}
+
+.greeting-text-switcher .text-switcher-children-wrapper.on-state {
+    transition-delay: 0.1s;
+}
+
+.greeting-text-switcher .text-switcher-styled-child {
+    background-color: var(--dark-blue);
+}
+
+.greeting-text-switcher .text-switcher-unstyled-child {
+    transition: 0.3s ease-in-out;
+}
+
+.greeting-text-switcher.pre-on-state .text-switcher-unstyled-child {
+    color: var(--light-orange);
 }
 
 .greeting-text {
@@ -96,7 +114,6 @@
     line-height: 4rem;
     margin-bottom: 2rem;
     cursor: default;
-    white-space: nowrap;
 }
 
 .greeting-text-hovered-text {
@@ -117,11 +134,16 @@
     animation: small-greeting-text-typewriter 0.4s steps(7) both 0.5s paused;
 }
 
-.greeting-card > a {
+.greeting-card-bottom {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.greeting-card-bottom > a {
     display: block;
     width: 11.5em;
     padding: 1em;
-    background-color: var(--blue);
     color: white;
     font-family: 'Montserrat', sans-serif;
     text-decoration: none;
@@ -131,11 +153,11 @@
     transition: background-color 0.3s ease-in-out;
 }
 
-.greeting-card > a:hover {
+.greeting-card-bottom > a:hover {
     background-color: var(--dark-blue);
 }
 
-.greeting-card > a:hover .send-email-button-wrapper{
+.greeting-card-bottom > a:hover .send-email-button-wrapper{
     margin-left: -2.5em;
 }
 
@@ -151,14 +173,34 @@
     margin: 0 1em;
 }
 
-@keyframes greeting-card-entry {
-    from {
-        width: 0;
-        padding-left: 0;
-    }
-    to {
-        width: 38rem;
-    }
+.greeting-card-icons .google-icon {
+    color: var(--dark-blue);
+    border: 2px solid var(--dark-blue);
+    padding: 0.5rem;
+    margin: 0 0.2rem;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.greeting-card-icons .google-icon.pre-on-state {
+    color: var(--light-orange);
+    border-color: var(--light-orange);
+}
+
+.greeting-card-icons .google-icon.on-state {
+    color: white;
+    border-color: white;
+    background-color: var(--dark-blue);
+}
+
+.short-description-card {
+    flex: 1;
+    height: 30rem;
+    margin: 0 5rem;
+    background-color: var(--light-blue-bg);
+    border: 3px solid white;
+    font-family: 'Shadows Into Light', cursive;
+    color: white;
 }
 
 @keyframes greeting-text-color-change {
@@ -177,14 +219,6 @@
     to {
         width: 7em;
     }
-}
-
-.light-primary-color {
-    background-color: white;
-}
-
-.dark-primary-color {
-    background-color: var(--very-dark-blue-bg);
 }
 
 /* overriding classes */
