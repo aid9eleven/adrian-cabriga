@@ -80,7 +80,7 @@
 }
 
 .greeting-card {
-    width: fit-content;
+    width: 27rem;
     background-color: var(--dull-blue-bg);
     padding: 3rem;
     padding-left: 5rem;
@@ -112,7 +112,6 @@
     font-size: 3rem;
     font-weight: normal;
     line-height: 4rem;
-    margin-bottom: 2rem;
     cursor: default;
 }
 
@@ -173,11 +172,16 @@
     margin: 0 1em;
 }
 
+.greeting-card-icons {
+    display: flex;
+    flex-direction: column;
+}
+
 .greeting-card-icons .google-icon {
     color: var(--dark-blue);
     border: 2px solid var(--dark-blue);
     padding: 0.5rem;
-    margin: 0 0.2rem;
+    margin: 0.2rem 0;
     cursor: pointer;
     transition: 0.3s ease-in-out;
 }
@@ -195,12 +199,25 @@
 
 .short-description-card {
     flex: 1;
-    height: 30rem;
     margin: 0 5rem;
     background-color: var(--light-blue-bg);
-    border: 3px solid white;
     font-family: 'Shadows Into Light', cursive;
+    font-size: 1.3rem;
     color: white;
+    height: 28rem;
+    overflow: hidden;
+}
+
+.short-description-subcategory {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20rem;
+    padding: 0.5rem;
+    margin-bottom: 2rem;
+    border: 2px solid white;
+    box-sizing: border-box;
+    transition: 0.4s ease-in-out;
 }
 
 @keyframes greeting-text-color-change {

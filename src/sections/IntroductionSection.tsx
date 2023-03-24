@@ -77,9 +77,9 @@ function IntroductionSection() {
             isSwitched={activatedTextSwitcher === DEVELOPER_DIV ? true : false}
             style={{cursor: "pointer"}}
           >
-            developer
-          </TextSwitcher>
-          &nbsp;and&nbsp;
+          developer
+          </TextSwitcher><br/>
+          and&nbsp;
           <TextSwitcher 
             className={`greeting-text-switcher ${hoveredTextSwitcher === DESIGNER_DIV ? CSS_CONSTANTS.PRE_ON_STATE : ""}`}
             direction={textSwitcherDirections.designer}
@@ -103,7 +103,7 @@ function IntroductionSection() {
             className={`small-greeting-text ${didHoverOnGreetingText ? CSS_CONSTANTS.ANIMATING_ELEMENT : ""}`}
           >
             はじめまして。
-          </span> <br/>
+          </span>
         </span>
         <div className="greeting-card-bottom">
           <a href="mailto:aid9eleven@gmail.com">
@@ -154,7 +154,31 @@ function IntroductionSection() {
         </div>
       </div>
       <div className="short-description-card">
-        Pretend this is my actual face lol
+        <div className="short-description-profile">
+          <div className="short-description-subcategory">
+            <TextSwitcher 
+              direction={TEXT_SWITCH_DIRECTION.DOWN}
+              isHoverable
+            >
+              what I do
+            </TextSwitcher>
+          </div>
+          <TextSwitcher 
+              className="short-description-subcategory"
+              direction={TEXT_SWITCH_DIRECTION.DOWN}
+              isHoverable
+            >
+              hobbies & interests
+            </TextSwitcher>
+          <div className="short-description-subcategory">
+            <TextSwitcher 
+              direction={TEXT_SWITCH_DIRECTION.DOWN}
+              isHoverable
+            >
+              a little bit about myself
+            </TextSwitcher>
+          </div>
+        </div>
       </div>
     </div>
   )
