@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
-import TextSwitcher, { TEXT_SWITCH_DIRECTION } from '../components/TextSwitcher';
+import TextSwitcher, { TextSwitchDirection } from '../components/TextSwitcher';
 import { CSS_CONSTANTS } from '../constants/cssClassConstants';
 import { GoogleIcon, GOOGLE_ICON_TYPE } from '../components/GoogleIcon'
+import { randomValueFromArray } from '../util/randomizer';
 
 function IntroductionSection() {
   const NO_DIV = -1;
@@ -10,9 +11,9 @@ function IntroductionSection() {
   const DESIGNER_DIV = 2;
 
   const initTextSwitcherDirections = {
-    aid: TEXT_SWITCH_DIRECTION.UP,
-    developer: TEXT_SWITCH_DIRECTION.UP,
-    designer: TEXT_SWITCH_DIRECTION.UP,
+    aid: "up" as TextSwitchDirection,
+    developer: "up" as TextSwitchDirection,
+    designer: "up" as TextSwitchDirection,
   }
 
   const [didHoverOnGreetingText, setDidHoverOnGreetingText] = useState<boolean>(false);
@@ -21,7 +22,7 @@ function IntroductionSection() {
   const [textSwitcherDirections, setTextSwitcherDirections] = useState(initTextSwitcherDirections)
 
   const handleDirectionRandomizer = () => {
-    return Math.floor(4 * Math.random());
+    return randomValueFromArray(["up", "down", "left", "right"]);
   }
 
   const handleDidHoverOnGreetingText = () => {
@@ -157,7 +158,7 @@ function IntroductionSection() {
         <div className="short-description-profile">
           <div className="short-description-subcategory">
             <TextSwitcher 
-              direction={TEXT_SWITCH_DIRECTION.DOWN}
+              direction="down"
               isHoverable
             >
               what I do
@@ -165,14 +166,14 @@ function IntroductionSection() {
           </div>
           <TextSwitcher 
               className="short-description-subcategory"
-              direction={TEXT_SWITCH_DIRECTION.DOWN}
+              direction="down"
               isHoverable
             >
               hobbies & interests
             </TextSwitcher>
           <div className="short-description-subcategory">
             <TextSwitcher 
-              direction={TEXT_SWITCH_DIRECTION.DOWN}
+              direction="down"
               isHoverable
             >
               a little bit about myself

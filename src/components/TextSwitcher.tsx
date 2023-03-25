@@ -2,10 +2,12 @@ import { ReactNode, useEffect, useState } from "react";
 import { CSS_CONSTANTS } from "../constants/cssClassConstants";
 import "./TextSwitcher.css";
 
+export type TextSwitchDirection = "up" | "down" | "left" | "right";
+
 interface IProps {
   children?: string,
   className?: string,
-  direction?: number;
+  direction?: TextSwitchDirection;
   isSwitched?: boolean;
   isHoverable?: boolean;
   onClick?: React.MouseEventHandler<HTMLDivElement>;
@@ -14,15 +16,15 @@ interface IProps {
   style?: React.CSSProperties;
 }
 
-export const TEXT_SWITCH_DIRECTION = {
-  UP: 0,
-  DOWN: 1,
-  LEFT: 2,
-  RIGHT: 3
+const TEXT_SWITCH_DIRECTION = {
+  UP: "up",
+  DOWN: "down",
+  LEFT: "left",
+  RIGHT: "right"
 }
 
 function TextSwitcher(props: IProps) {
-  const direction = props.direction ?? TEXT_SWITCH_DIRECTION.UP;
+  const direction = TEXT_SWITCH_DIRECTION.UP;
   const [isSwitched, setSwitched] = useState(false)
 
   const handleMouseOver = () => {
@@ -50,7 +52,12 @@ function TextSwitcher(props: IProps) {
 
   return (
     <div 
-      className={`text-switcher ${props.className} ${props.isHoverable ? CSS_CONSTANTS.HOVERABLE : ""}`}
+      className={`
+        text-switcher 
+        ${props.className} 
+        ${props.isHoverable ? CSS_CONSTANTS.HOVERABLE : ""}
+
+      `}
       onClick={props.onClick}
       onMouseOver={props.onMouseOver ?? handleMouseOver}
       onMouseLeave={props.onMouseLeave ?? handleMouseLeave}
@@ -61,10 +68,7 @@ function TextSwitcher(props: IProps) {
         className={`
           text-switcher-children-wrapper 
           ${isSwitched ? CSS_CONSTANTS.ON_STATE : ""}
-          ${direction === TEXT_SWITCH_DIRECTION.UP ? "up" : ""}
-          ${direction === TEXT_SWITCH_DIRECTION.DOWN ? "down" : ""}
-          ${direction === TEXT_SWITCH_DIRECTION.LEFT ? "left" : ""}
-          ${direction === TEXT_SWITCH_DIRECTION.RIGHT ? "right" : ""}
+          ${direction}
         `}
       >
         <div className="text-switcher-styled-child">{props.children}</div>
