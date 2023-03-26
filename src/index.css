@@ -209,15 +209,25 @@
 }
 
 .short-description-subcategory {
+    margin-bottom: 2rem;
+    border: 2px solid white;
+    transition: 0.3s ease-in-out;
+}
+
+.short-description-subcategory:hover {
+    border-color: var(--dark-blue);
+    cursor: pointer;
+}
+
+.short-description-subcategory .text-switcher{
     display: flex;
     align-items: center;
     justify-content: center;
     min-width: 20rem;
-    padding: 0.5rem;
-    margin-bottom: 2rem;
-    border: 2px solid white;
-    box-sizing: border-box;
-    transition: 0.4s ease-in-out;
+}
+
+.short-description-subcategory .text-switcher-styled-child {
+    color: var(--dark-blue);
 }
 
 @keyframes greeting-text-color-change {

@@ -1,5 +1,6 @@
 import { ReactNode, useEffect, useState } from "react";
 import { CSS_CONSTANTS } from "../constants/cssClassConstants";
+import { classNameBuilder } from "../util/stringBuilder";
 import "./TextSwitcher.css";
 
 export type TextSwitchDirection = "up" | "down" | "left" | "right";
@@ -16,15 +17,7 @@ interface IProps {
   style?: React.CSSProperties;
 }
 
-const TEXT_SWITCH_DIRECTION = {
-  UP: "up",
-  DOWN: "down",
-  LEFT: "left",
-  RIGHT: "right"
-}
-
 function TextSwitcher(props: IProps) {
-  const direction = TEXT_SWITCH_DIRECTION.UP;
   const [isSwitched, setSwitched] = useState(false)
 
   const handleMouseOver = () => {
@@ -47,17 +40,20 @@ function TextSwitcher(props: IProps) {
 
   useEffect(() => {
     setSwitched(props.isSwitched ?? false);
+    console.log(`${props.className ?? ` ${props.className}`}`);
+    
   }, [props.isSwitched])
   
 
   return (
     <div 
-      className={`
-        text-switcher 
-        ${props.className} 
-        ${props.isHoverable ? CSS_CONSTANTS.HOVERABLE : ""}
-
-      `}
+      className={
+        classNameBuilder([
+          "text-switcher",
+          props.className,
+          (props.isHoverable ? CSS_CONSTANTS.HOVERABLE : "")
+        ])
+      }
       onClick={props.onClick}
       onMouseOver={props.onMouseOver ?? handleMouseOver}
       onMouseLeave={props.onMouseLeave ?? handleMouseLeave}
@@ -65,14 +61,14 @@ function TextSwitcher(props: IProps) {
     >
       <div className="text-switcher-base">{props.children}</div>
       <div 
-        className={`
-          text-switcher-children-wrapper 
-          ${isSwitched ? CSS_CONSTANTS.ON_STATE : ""}
-          ${direction}
-        `}
+        className={
+          "text-switcher-children-wrapper"
+          + `${isSwitched ? " " + CSS_CONSTANTS.ON_STATE : ""}`
+          + ` ${props.direction}`
+        }
       >
-        <div className="text-switcher-styled-child">{props.children}</div>
-        <div className="text-switcher-unstyled-child">{props.children}</div>
+        <div className="text-switcher-styled-child" style={props.style}>{props.children}</div>
+        <div className="text-switcher-unstyled-child" style={props.style}>{props.children}</div>
       </div>
     </div>
   )

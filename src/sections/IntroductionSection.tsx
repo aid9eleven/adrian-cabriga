@@ -3,6 +3,7 @@ import TextSwitcher, { TextSwitchDirection } from '../components/TextSwitcher';
 import { CSS_CONSTANTS } from '../constants/cssClassConstants';
 import { GoogleIcon, GOOGLE_ICON_TYPE } from '../components/GoogleIcon'
 import { randomValueFromArray } from '../util/randomizer';
+import { classNameBuilder } from '../util/stringBuilder';
 
 function IntroductionSection() {
   const NO_DIV = -1;
@@ -50,7 +51,6 @@ function IntroductionSection() {
 
     setTimeout(() => {handleSetActivatedTextSwitcher(AID_DIV);}, 0);
   }, [])
-  
 
   return (
     <div className="introduction-section">
@@ -58,7 +58,12 @@ function IntroductionSection() {
         <span className="greeting-text">
           Hi, I'm&nbsp;
           <TextSwitcher 
-            className={`greeting-text-switcher ${hoveredTextSwitcher === AID_DIV ? CSS_CONSTANTS.PRE_ON_STATE : ""}`}
+            className={
+              classNameBuilder([
+                "greeting-text-switcher",
+                (hoveredTextSwitcher === AID_DIV ? CSS_CONSTANTS.PRE_ON_STATE : "")
+              ])
+            }
             direction={textSwitcherDirections.aid}
             onClick={() => handleSetActivatedTextSwitcher(AID_DIV)}
             onMouseOver={() => handleHoveredTextSwitcher(AID_DIV)}
@@ -70,7 +75,12 @@ function IntroductionSection() {
 
           A software&nbsp;
           <TextSwitcher 
-            className={`greeting-text-switcher ${hoveredTextSwitcher === DEVELOPER_DIV ? CSS_CONSTANTS.PRE_ON_STATE : ""}`}
+            className={
+              classNameBuilder([
+                "greeting-text-switcher",
+                (hoveredTextSwitcher === DEVELOPER_DIV ? CSS_CONSTANTS.PRE_ON_STATE : "")
+              ])
+            }
             direction={textSwitcherDirections.developer}
             onClick={() => handleSetActivatedTextSwitcher(DEVELOPER_DIV)}
             onMouseOver={() => handleHoveredTextSwitcher(DEVELOPER_DIV)}
@@ -82,7 +92,12 @@ function IntroductionSection() {
           </TextSwitcher><br/>
           and&nbsp;
           <TextSwitcher 
-            className={`greeting-text-switcher ${hoveredTextSwitcher === DESIGNER_DIV ? CSS_CONSTANTS.PRE_ON_STATE : ""}`}
+            className={
+              classNameBuilder([
+                "greeting-text-switcher",
+                (hoveredTextSwitcher === DESIGNER_DIV ? CSS_CONSTANTS.PRE_ON_STATE : "")
+              ])
+            }            
             direction={textSwitcherDirections.designer}
             onClick={() => handleSetActivatedTextSwitcher(DESIGNER_DIV)}
             onMouseOver={() => handleHoveredTextSwitcher(DESIGNER_DIV)}
@@ -157,24 +172,34 @@ function IntroductionSection() {
       <div className="short-description-card">
         <div className="short-description-profile">
           <div className="short-description-subcategory">
-            <TextSwitcher 
+            <TextSwitcher
               direction="down"
               isHoverable
+              style={{
+                padding: "0.5rem",
+              }}
             >
               what I do
             </TextSwitcher>
           </div>
-          <TextSwitcher 
-              className="short-description-subcategory"
+          <div className="short-description-subcategory">
+            <TextSwitcher
               direction="down"
               isHoverable
+              style={{
+                padding: "0.5rem",
+              }}
             >
               hobbies & interests
             </TextSwitcher>
+          </div>
           <div className="short-description-subcategory">
-            <TextSwitcher 
+            <TextSwitcher
               direction="down"
               isHoverable
+              style={{
+                padding: "0.5rem",
+              }}
             >
               a little bit about myself
             </TextSwitcher>

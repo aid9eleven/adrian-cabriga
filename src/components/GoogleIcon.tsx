@@ -1,3 +1,5 @@
+import { classNameBuilder } from "../util/stringBuilder";
+
 export const GOOGLE_ICON_TYPE = {
   BRUSH: "brush",
   CODE: "code",
@@ -18,7 +20,7 @@ interface IProps {
 export function GoogleIcon(props: IProps) {
   return (
     <span 
-      className={`google-icon material-symbols-outlined ${props.className}`}
+      className={classNameBuilder(["google-icon material-symbols-outlined", props.className])}
       onClick={props.onClick}
       onMouseOver={props.onMouseOver}
       onMouseLeave={props.onMouseLeave}
