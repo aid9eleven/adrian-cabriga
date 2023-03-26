@@ -40,8 +40,6 @@ function TextSwitcher(props: IProps) {
 
   useEffect(() => {
     setSwitched(props.isSwitched ?? false);
-    console.log(`${props.className ?? ` ${props.className}`}`);
-    
   }, [props.isSwitched])
   
 
