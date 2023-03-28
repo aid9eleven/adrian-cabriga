@@ -4,5 +4,5 @@
  * @param {(string | null | undefined)[]} classNames The array containing the classnames.
  */
 export function classNameBuilder(classNames: (string | null | undefined)[]): string {
-  return (classNames.join(" ") ?? "").trim();
+  return (classNames.join(" ") ?? "").trim().replace(/ {2,}/g, " ");
 }

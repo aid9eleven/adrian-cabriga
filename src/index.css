@@ -11,6 +11,7 @@
     --light-blue-bg: #8ab8e7;
     --blue-gray-bg: #a2bfdc;
     --dull-blue-bg: #567fa8;
+    --blue-bg: #4277ad;
 
     --light-purple: #c6ceff;
     --light-blue: #84b7fe;
@@ -27,225 +28,29 @@
 }
 
 .app {
-    min-height: 100vh;
-    background-color: var(--light-blue-bg);
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    top: 0;
-    margin-bottom: 2rem;
-    padding: 2rem 5rem 1rem 5rem;
-    font-family: 'Montserrat', sans-serif;
-    color: white;
-    text-transform: uppercase;
-}
-
-.home {
-    padding: 1rem 2rem 1rem 0;
-    border-bottom: 3px solid transparent;
-    cursor: pointer;
-    transition: 0.3s ease-in-out;
-}
-
-.home:hover {
-    border-color: white;
-}
-
-.header-navigation {
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.header-navigation > h4 {
-    cursor: pointer;
-    margin-left: 3rem;
-    padding: 1rem 0;
-    border-bottom: 3px solid transparent;
-    transition: 0.3s ease-in-out;
-}
-
-.header-navigation > h4:hover {
-    border-color: white;
-}
-
-.introduction-section {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 5rem;
-}
-
-.greeting-card {
-    width: 27rem;
-    background-color: var(--dull-blue-bg);
-    padding: 3rem;
-    padding-left: 5rem;
-    border-top-right-radius: 1rem;
-    border-bottom-right-radius: 1rem;
-    overflow: hidden;
-}
-
-.greeting-text-switcher .text-switcher-children-wrapper.on-state {
-    transition-delay: 0.1s;
-}
-
-.greeting-text-switcher .text-switcher-styled-child {
-    background-color: var(--dark-blue);
-}
-
-.greeting-text-switcher .text-switcher-unstyled-child {
-    transition: 0.3s ease-in-out;
-}
-
-.greeting-text-switcher.pre-on-state .text-switcher-unstyled-child {
-    color: var(--light-orange);
-}
-
-.greeting-text {
-    display: block;
-    color: white;
-    font-family: 'Dosis', sans-serif;
-    font-size: 3rem;
-    font-weight: normal;
-    line-height: 4rem;
-    cursor: default;
-}
-
-.greeting-text-hovered-text {
-    color: var(--pink);
-    animation: greeting-text-color-change 0.3s ease-in-out both paused;
-}
-
-.greeting-text-hovered-text:hover ~ .small-greeting-text {
-    animation-play-state: running;
-}
-
-.small-greeting-text {
-    display: block;
-    color: var(--pink);
-    font-size: 1.5rem;
-    overflow: hidden;
-    white-space: nowrap;
-    animation: small-greeting-text-typewriter 0.4s steps(7) both 0.5s paused;
-}
-
-.greeting-card-bottom {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-}
-
-.greeting-card-bottom > a {
-    display: block;
-    width: 11.5em;
-    padding: 1em;
-    color: white;
-    font-family: 'Montserrat', sans-serif;
-    text-decoration: none;
-    border: 2px solid white;
-    cursor: pointer;
-    overflow: hidden;
-    transition: background-color 0.3s ease-in-out;
-}
-
-.greeting-card-bottom > a:hover {
-    background-color: var(--dark-blue);
-}
-
-.greeting-card-bottom > a:hover .send-email-button-wrapper{
-    margin-left: -2.5em;
-}
-
-.send-email-button-wrapper {
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
-    transition: 0.3s ease-in-out;
-    margin-left: 0;
-}
-
-.send-email-button-text {
-    margin: 0 1em;
-}
-
-.greeting-card-icons {
-    display: flex;
-    flex-direction: column;
-}
-
-.greeting-card-icons .google-icon {
-    color: var(--dark-blue);
-    border: 2px solid var(--dark-blue);
-    padding: 0.5rem;
-    margin: 0.2rem 0;
-    cursor: pointer;
-    transition: 0.3s ease-in-out;
-}
-
-.greeting-card-icons .google-icon.pre-on-state {
-    color: var(--light-orange);
-    border-color: var(--light-orange);
-}
-
-.greeting-card-icons .google-icon.on-state {
-    color: white;
-    border-color: white;
-    background-color: var(--dark-blue);
-}
-
-.short-description-card {
-    flex: 1;
-    margin: 0 5rem;
-    background-color: var(--light-blue-bg);
-    font-family: 'Shadows Into Light', cursive;
-    font-size: 1.3rem;
-    color: white;
-    height: 28rem;
-    overflow: hidden;
-}
-
-.short-description-subcategory {
-    margin-bottom: 2rem;
-    border: 2px solid white;
-    transition: 0.3s ease-in-out;
-}
-
-.short-description-subcategory:hover {
-    border-color: var(--dark-blue);
-    cursor: pointer;
-}
-
-.short-description-subcategory .text-switcher{
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 20rem;
+    height: 100vh;
+    background-color: var(--blue-bg);
 }
 
-.short-description-subcategory .text-switcher-styled-child {
-    color: var(--dark-blue);
+.large-greeting-text-line {
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 5rem;
+    transform: scaleX(80%);
 }
 
-@keyframes greeting-text-color-change {
-    from {
-        color: white;
-    }
-    to {
-        color: var(--pink);
-    }
+.large-greeting-text-line .text-switcher-on-state-child {
+    color: var(--light-orange);
 }
 
-@keyframes small-greeting-text-typewriter {
-    from {
-        width: 0;
-    }
-    to {
-        width: 7em;
-    }
+.large-greeting-text-line .emphasized .text-switcher-on-state-child {
+    background-color: var(--dark-blue);
+    color: white;
 }
 
 /* overriding classes */

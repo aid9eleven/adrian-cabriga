@@ -1,47 +1,46 @@
 .text-switcher {
-  display: inline-block;
   overflow: hidden;
   position: relative;
-  margin-bottom: -0.5ch;
+  white-space: nowrap;
 }
 
 .text-switcher-base {
   visibility: hidden;
 }
 
-.text-switcher-children-wrapper.on-state.up {
+.text-switcher.on-state.up .text-switcher-children-wrapper {
   top: -100%;
 }
 
-.text-switcher-children-wrapper.on-state.down {
+.text-switcher.on-state.down .text-switcher-children-wrapper {
   top: 0;
 }
 
-.text-switcher-children-wrapper.on-state.left {
+.text-switcher.on-state.left .text-switcher-children-wrapper {
   left: -100%;
 }
 
-.text-switcher-children-wrapper.on-state.right {
+.text-switcher.on-state.right .text-switcher-children-wrapper {
   left: 0;
 }
 
-.text-switcher-children-wrapper.up {
+.text-switcher.up .text-switcher-children-wrapper {
   flex-direction: column-reverse;
   top: 0;
 }
 
-.text-switcher-children-wrapper.down {
+.text-switcher.down .text-switcher-children-wrapper {
   flex-direction: column;
   top: -100%;
 }
 
-.text-switcher-children-wrapper.left {
+.text-switcher.left .text-switcher-children-wrapper {
   flex-direction: row-reverse;
   top: 0;
   left: 0;
 }
 
-.text-switcher-children-wrapper.right {
+.text-switcher.right .text-switcher-children-wrapper {
   flex-direction: row;
   top: 0;
   left: -100%;

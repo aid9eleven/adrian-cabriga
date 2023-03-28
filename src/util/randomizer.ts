@@ -19,7 +19,7 @@ export function randomInt(num1: number, num2?: number) {
 
 
 /**
- * Takes in an array then returns a random value in that array.
+ * Takes in an array then returns a random value from that array.
  *
  * @param {any[]} array The working array of any type.
  */

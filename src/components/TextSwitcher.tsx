@@ -1,46 +1,55 @@
 import { ReactNode, useEffect, useState } from "react";
 import { CSS_CONSTANTS } from "../constants/cssClassConstants";
+import { randomValueFromArray } from "../util/randomizer";
 import { classNameBuilder } from "../util/stringBuilder";
 import "./TextSwitcher.css";
 
-export type TextSwitchDirection = "up" | "down" | "left" | "right";
-
-interface IProps {
+export interface ITextSwitcherProps {
   children?: string,
   className?: string,
-  direction?: TextSwitchDirection;
-  isSwitched?: boolean;
-  isHoverable?: boolean;
+  direction?: "up" | "down" | "left" | "right" | "random";
+  offStateChild?: string;
+  onStateChild?: string;
+  switched?: boolean;
+  hoverable?: boolean;
+  onMouseLeave?: React.MouseEventHandler<HTMLDivElement>;
   onClick?: React.MouseEventHandler<HTMLDivElement>;
   onMouseOver?: React.MouseEventHandler<HTMLDivElement>;
-  onMouseLeave?: React.MouseEventHandler<HTMLDivElement>;
   style?: React.CSSProperties;
 }
 
-function TextSwitcher(props: IProps) {
-  const [isSwitched, setSwitched] = useState(false)
+function TextSwitcher(props: ITextSwitcherProps) {
+  const [switched, setSwitched] = useState(false);
+  const [direction, setDirection] = useState("up");
 
   const handleMouseOver = () => {
-    if (props.isSwitched) {
+    if (props.switched) {
       setSwitched(true);
       return;
     };
 
-    if (props.isHoverable) setSwitched(true);
+    if (props.hoverable) setSwitched(true);
   }
 
   const handleMouseLeave = () => {
-    if (props.isSwitched) {
+    if (props.switched) {
       setSwitched(true);
       return;
     };
 
-    if (props.isHoverable) setSwitched(false);
+    if (props.hoverable) setSwitched(false);
   }
 
   useEffect(() => {
-    setSwitched(props.isSwitched ?? false);
-  }, [props.isSwitched])
+    setSwitched(props.switched ?? false);
+    setDirection(() => {
+      if (props.direction === undefined) 
+        return "up";
+      if (props.direction === "random") 
+        return randomValueFromArray(["up", "down", "left", "right"]);
+      return props.direction;
+    })
+  }, [props.switched])
   
 
   return (
@@ -49,7 +58,8 @@ function TextSwitcher(props: IProps) {
         classNameBuilder([
           "text-switcher",
           props.className,
-          (props.isHoverable ? CSS_CONSTANTS.HOVERABLE : "")
+          `${switched ? CSS_CONSTANTS.ON_STATE : ""}`,
+          direction
         ])
       }
       onClick={props.onClick}
@@ -59,14 +69,10 @@ function TextSwitcher(props: IProps) {
     >
       <div className="text-switcher-base">{props.children}</div>
       <div 
-        className={
-          "text-switcher-children-wrapper"
-          + `${isSwitched ? " " + CSS_CONSTANTS.ON_STATE : ""}`
-          + ` ${props.direction}`
-        }
+        className={"text-switcher-children-wrapper"}
       >
-        <div className="text-switcher-styled-child" style={props.style}>{props.children}</div>
-        <div className="text-switcher-unstyled-child" style={props.style}>{props.children}</div>
+        <div className="text-switcher-on-state-child" style={props.style}>{props.onStateChild ?? props.children}</div>
+        <div className="text-switcher-off-state-child" style={props.style}>{props.offStateChild ?? props.children}</div>
       </div>
     </div>
   )
