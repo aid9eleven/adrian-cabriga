@@ -17,7 +17,7 @@ export interface ITextSwitcherProps {
   style?: React.CSSProperties;
 }
 
-function TextSwitcher(props: ITextSwitcherProps) {
+const TextSwitcher = (props: ITextSwitcherProps) => {
   const [switched, setSwitched] = useState(false);
   const [direction, setDirection] = useState("up");
 

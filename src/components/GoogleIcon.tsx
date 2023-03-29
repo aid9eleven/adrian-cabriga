@@ -8,16 +8,15 @@ export const GOOGLE_ICON_TYPE = {
   SEND: "send",
 }
 
-interface IProps {
+interface IGoogleIconProps {
   icon: string;
   className?: string;
   onClick?: React.MouseEventHandler<HTMLDivElement>;
   onMouseOver?: React.MouseEventHandler<HTMLDivElement>;
   onMouseLeave?: React.MouseEventHandler<HTMLDivElement>;
-
 }
 
-export function GoogleIcon(props: IProps) {
+export const GoogleIcon = (props: IGoogleIconProps) => {
   return (
     <span 
       className={classNameBuilder(["google-icon material-symbols-outlined", props.className])}

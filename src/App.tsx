@@ -1,12 +1,13 @@
 import './App.css'
-import LargeGreetingText from './components/LargeGreetingText'
-import TextSwitcher from './components/TextSwitcher'
+import GreetingScreen from './screens/GreetingScreen'
 
-function App() {
+const App = () => {
 
   return (
     <div className="app">
-      <LargeGreetingText/>
+      <div className="wrapper">
+        <GreetingScreen theme="light-orange"/>
+      </div>
     </div>
   )
 }

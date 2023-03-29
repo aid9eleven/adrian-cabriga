@@ -27,15 +27,42 @@
     user-select: none;
 }
 
-.app {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+.background {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
     background-color: var(--blue-bg);
 }
 
-.large-greeting-text-line {
+.transitioning-background {
+    height: 100%;
+    width: 0;
+    transition: width 0.3s ease-in-out;
+}
+
+.transitioning-background.on-state {
+    width: 100%;
+}
+
+.background-light-orange {
+    background-color: var(--light-orange);
+}
+
+.background-blue {
+    background-color: var(--blue-bg);
+}
+
+.greeting-screen {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.greeting-screen-line {
     display: flex;
     justify-content: center;
     color: white;
@@ -44,16 +71,38 @@
     transform: scaleX(80%);
 }
 
-.large-greeting-text-line .text-switcher-on-state-child {
+.greeting-screen-line .text-switcher-on-state-child {
     color: var(--light-orange);
 }
 
-.large-greeting-text-line .emphasized .text-switcher-on-state-child {
+.greeting-screen-line .emphasized .text-switcher-on-state-child {
+    background-color: var(--dark-blue);
+    color: white;
+}
+
+.greeting-screen-line .emphasized .text-switcher-on-state-child {
     background-color: var(--dark-blue);
     color: white;
 }
 
 /* overriding classes */
+.screen {
+    height: 100vh !important;
+    width: 100vw !important;
+}
+
 .animating-element {
     animation-play-state: running !important;
+}
+
+.light-orange-theme {
+    background-color: var(--light-orange);
+}
+
+.light-orange-theme.text-color {
+    color: white;
+}
+
+.light-orange-theme .text-switcher-on-state-child {
+    color: var(--dark-blue);
 }

@@ -8,8 +8,8 @@ export default class Timer {
 
     setInterval(() => {
       if (!this.isPaused)
-        this.setTime(this.secondsLeft - 1);
-    }, 1000);
+        this.setTime(this.secondsLeft - 0.1);
+    }, 100);
   }
 
   setTime = (seconds: number) => {
