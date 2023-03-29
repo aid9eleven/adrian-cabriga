@@ -1,13 +1,12 @@
 import { useEffect, useReducer, useState } from "react";
-import { CSS_CONSTANTS } from "../constants/cssClassConstants";
+import Timer from "../classes/Timer";
 import TextSwitcher, { ITextSwitcherProps } from "./TextSwitcher";
 
 interface ITextSwitcherState {
   id: number,
   text: string,
   switched: boolean,
-  hovered: boolean,
-  timer: number
+  timer: Timer
 }
 
 const textSwitcherInitialStates: ITextSwitcherState[] = [
@@ -15,96 +14,78 @@ const textSwitcherInitialStates: ITextSwitcherState[] = [
     id: 0,
     text: "Hi",
     switched: false,
-    hovered: false,
-    timer: 0
+    timer: new Timer()
   },
   {
     id: 1,
     text: "I",
     switched: false,
-    hovered: false,
-    timer: 0
+    timer: new Timer()
   },
   {
     id: 2,
     text: "am",
     switched: false,
-    hovered: false,
-    timer: 0
+    timer: new Timer()
   },
   {
     id: 3,
     text: "Aid",
     switched: false,
-    hovered: false,
-    timer: 0
+    timer: new Timer()
   },
   {
     id: 4,
     text: "I",
     switched: false,
-    hovered: false,
-    timer: 0
+    timer: new Timer()
   },
   {
     id: 5,
     text: "am",
     switched: false,
-    hovered: false,
-    timer: 0
+    timer: new Timer()
   },
   {
     id: 6,
     text: "a",
     switched: false,
-    hovered: false,
-    timer: 0
+    timer: new Timer()
   },
   {
     id: 7,
     text: "software developer",
     switched: false,
-    hovered: false,
-    timer: 0
+    timer: new Timer()
   },
 ];
 
 const reducer = (state: ITextSwitcherState[], action: { type: string; id: number; }) => {
   switch (action.type) {
-    case "HOVER_ON":
-      return state.map((textSwitcher) => {
-        if (textSwitcher.id === action.id) {
-          return { ...textSwitcher, hovered: true};
-        } else {
-          return textSwitcher;
-        }
-      });
-    case "HOVER_OFF":
-      return state.map((textSwitcher) => {
-        if (textSwitcher.id === action.id) {
-          return { ...textSwitcher, hovered: false};
-        } else {
-          return textSwitcher;
-        }
-      });
     case "SWITCH_ON":
-      return state.map((textSwitcher) => {
-        if (textSwitcher.id === action.id) {
-          return { ...textSwitcher, switched: true, timer: 5 };
-        } else {
-          return textSwitcher;
+      return state.map((textSwitcherState) => {
+        if (textSwitcherState.id === action.id) {
+          let newState = { ...textSwitcherState, switched: true };
+          newState.timer.setTime(5);
+          newState.timer.pause();
+          return newState;
+        } 
+        return textSwitcherState;
+      }); 
+      
+    case "SWITCH_OFF":
+      return state.map((textSwitcherState) => {
+        if (textSwitcherState.id === action.id) {
+          return { ...textSwitcherState, switched: false };
         }
+        return textSwitcherState;
       });
-    case "TICK_TIMER":
-      return state.map((textSwitcher) => {
-        if (textSwitcher.id === action.id) {
-          if (textSwitcher.hovered) return { ...textSwitcher, switched: true, timer: 5 };
-          if (textSwitcher.timer <= 0) return { ...textSwitcher, switched: false, timer: 0 };
-          return { ...textSwitcher, timer: textSwitcher.timer-- };
-        } else {
-          return textSwitcher;
-        }
+
+    case "UPDATE_TIMER":
+      return state.map((textSwitcherState) => {
+        return textSwitcherState;
       });
+
     default:
       return state;
   }
@@ -114,20 +95,35 @@ function LargeGreetingText() {
   const [textSwitcherStates, dispatch] = useReducer(reducer, textSwitcherInitialStates);
 
   const handleTextSwitcherOnMouseOver = (id: number) => {
-    dispatch({ type: "HOVER_ON", id: id});
     dispatch({ type: "SWITCH_ON", id: id});
   }
 
-  const handleTextSwitcherOnMouseLeave = (id: number) => {  
-    dispatch({ type: "HOVER_OFF", id: id});  
-    setInterval(() => {
-      dispatch({type: "TICK_TIMER", id: id});
-    }, 1000);
+  const handleTextSwitcherOnMouseLeave = (id: number) => {
+    textSwitcherStates[id].timer.unpause();
   }
 
+
   useEffect(() => {
-    console.log(textSwitcherStates + "from useeffect");
-  }, [textSwitcherStates])
+    setInterval(() => {
+      dispatch({ type: "UPDATE_TIMER", id: 0});
+    }, 1000)
+    
+    textSwitcherStates.map((textSwitcherState) => {
+      if (textSwitcherState.timer.hasTimerStopped()) {
+        dispatch({ type: "SWITCH_OFF", id: textSwitcherState.id});
+      }
+    })
+  }, 
+  [
+    textSwitcherStates[0].switched, textSwitcherStates[0].timer.secondsLeft,
+    textSwitcherStates[1].switched, textSwitcherStates[1].timer.secondsLeft,
+    textSwitcherStates[2].switched, textSwitcherStates[2].timer.secondsLeft,
+    textSwitcherStates[3].switched, textSwitcherStates[3].timer.secondsLeft,
+    textSwitcherStates[4].switched, textSwitcherStates[4].timer.secondsLeft,
+    textSwitcherStates[5].switched, textSwitcherStates[5].timer.secondsLeft,
+    textSwitcherStates[6].switched, textSwitcherStates[6].timer.secondsLeft,
+    textSwitcherStates[7].switched, textSwitcherStates[7].timer.secondsLeft,
+  ]);
   
 
   return (

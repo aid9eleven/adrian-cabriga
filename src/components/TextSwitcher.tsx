@@ -1,13 +1,12 @@
-import { ReactNode, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { CSS_CONSTANTS } from "../constants/cssClassConstants";
-import { randomValueFromArray } from "../util/randomizer";
 import { classNameBuilder } from "../util/stringBuilder";
 import "./TextSwitcher.css";
 
 export interface ITextSwitcherProps {
   children?: string,
   className?: string,
-  direction?: "up" | "down" | "left" | "right" | "random";
+  direction?: "up" | "down" | "left" | "right";
   offStateChild?: string;
   onStateChild?: string;
   switched?: boolean;
@@ -45,8 +44,6 @@ function TextSwitcher(props: ITextSwitcherProps) {
     setDirection(() => {
       if (props.direction === undefined) 
         return "up";
-      if (props.direction === "random") 
-        return randomValueFromArray(["up", "down", "left", "right"]);
       return props.direction;
     })
   }, [props.switched])
