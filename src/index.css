@@ -1,60 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Dosis&family=Montserrat&family=Shadows+Into+Light&display=swap');
-/* 
-    font-family: 'Montserrat', sans-serif; https://fonts.google.com/specimen/Montserrat
-    font-family: 'Dosis', sans-serif; https://fonts.google.com/specimen/Dosis
-    font-family: 'Shadows Into Light', cursive; https://fonts.google.com/specimen/Shadows+Into+Light
-*/
-
-:root {
-    --light-gray-bg: #f1f3f4;
-    --very-light-blue-bg: #deeaf6;
-    --light-blue-bg: #8ab8e7;
-    --blue-gray-bg: #a2bfdc;
-    --dull-blue-bg: #567fa8;
-    --blue-bg: #4277ad;
-
-    --light-purple: #c6ceff;
-    --light-blue: #84b7fe;
-    --light-orange: #efc379;
-    --blue: #258bd6;
-    --dark-blue: #26415c;
-    --pink: #ffa4fc;
-}
-
 * {
     padding: 0;
     margin: 0;
     user-select: none;
-}
-
-.background {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    left: 0;
-    top: 0;
-    z-index: -1;
-}
-
-.transitioning-background {
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 0;
-    transition: width 0.3s ease-in-out;
-}
-
-.transitioning-background.on-state {
-    width: 100%;
-}
-
-.background-light-orange {
-    background-color: var(--light-orange);
-}
-
-.background-blue {
-    background-color: var(--blue-bg);
 }
 
 .greeting-screen {
@@ -64,17 +11,8 @@
     justify-content: center;
 }
 
-.greeting-arrow {
-    cursor: pointer;
-}
-
 .greeting-arrow .google-icon {
-    color: white;
     font-size: 5rem;
-}
-
-.greeting-arrow .text-switcher-on-state-child .google-icon {
-    color: var(--dark-blue);
 }
 
 .greeting-wrapper {
@@ -96,16 +34,6 @@
 .greeting-screen-line-2 {
     font-size: 3.5rem;
 }
-
-.greeting-screen-line .text-switcher-on-state-child {
-    color: var(--light-orange);
-}
-
-.greeting-screen-line .emphasized .text-switcher-on-state-child {
-    background-color: var(--dark-blue);
-    color: white;
-}
-
 
 /* overriding classes */
 .screen {

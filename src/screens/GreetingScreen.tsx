@@ -1,15 +1,16 @@
-import { Fragment, useEffect, useReducer } from "react";
+import { Fragment, useEffect, useReducer, useState } from "react";
 import Timer from "../classes/Timer";
 import Background from "../components/Background";
 import Carousel from "../components/Carousel";
 import { GoogleIcon } from "../components/GoogleIcon";
 import TextSwitcher from "../components/TextSwitcher";
-import { CSS_CONSTANTS } from "../constants/cssClassConstants";
+import { CSS_CONSTANTS, ELEMENT_TYPES, THEME_CONSTANTS, Theme } from "../styles/cssClassConstants";
+import { classNameBuilder } from "../util/stringBuilder";
 
 interface ITextSwitcherState {
   id: number,
   text: string,
-  className?: string,
+  isHighlighted?: boolean;
   direction: "up" | "down" | "left" | "right",
   switched: boolean,
   timer: Timer
@@ -75,7 +76,7 @@ const textSwitcherInitialStates: ITextSwitcherState[] = [
   {
     id: 8,
     text: "software developer",
-    className: "emphasized",
+    isHighlighted: true,
     direction: "down",
     switched: false,
     timer: new Timer()
@@ -83,7 +84,7 @@ const textSwitcherInitialStates: ITextSwitcherState[] = [
   {
     id: 9,
     text: "graphic designer",
-    className: "emphasized",
+    isHighlighted: true,
     direction: "down",
     switched: false,
     timer: new Timer()
@@ -91,7 +92,7 @@ const textSwitcherInitialStates: ITextSwitcherState[] = [
   {
     id: 10,
     text: "artist",
-    className: "emphasized",
+    isHighlighted: true,
     direction: "down",
     switched: false,
     timer: new Timer()
@@ -99,7 +100,7 @@ const textSwitcherInitialStates: ITextSwitcherState[] = [
   {
     id: 11,
     text: "computer engineer",
-    className: "emphasized",
+    isHighlighted: true,
     direction: "down",
     switched: false,
     timer: new Timer()
@@ -168,12 +169,13 @@ const GreetingScreenTextSwitcher = (props: IGreetingScreenTextSwitcherProps) => 
   ]);
 
   return (
-    <TextSwitcher 
-      switched={textSwitcherStates[props.id].switched}
-      className={textSwitcherStates[props.id].className}
+    <TextSwitcher
       direction={textSwitcherStates[props.id].direction}
-      onMouseOver={() => handleTextSwitcherOnMouseOver(props.id)}
+      offStateChildClassName={ELEMENT_TYPES.TEXT}
+      onStateChildClassName={textSwitcherStates[props.id].isHighlighted ? ELEMENT_TYPES.HIGHLIGHTED_TEXT : ELEMENT_TYPES.HOVERED_TEXT}
+      switched={textSwitcherStates[props.id].switched}
       onMouseLeave={() => handleTextSwitcherOnMouseLeave(props.id)}
+      onMouseOver={() => handleTextSwitcherOnMouseOver(props.id)}
     >
       {textSwitcherStates[props.id].text}
     </TextSwitcher>
@@ -198,25 +200,67 @@ const GreetingScreenLineTwo = (props: IGreetingScreenLineTwoProps) => (
 )
 
 interface IGreetingScreenProps {
-  theme: "blue" | "light-orange"
+  theme: Theme;
 }
 
 const GreetingScreen = (props: IGreetingScreenProps) => {
+  const [theme, setTheme] = useState(props.theme)
+
+  const themeChanger = () => {
+    if (theme === THEME_CONSTANTS.LIGHT_ORANGE) {
+      setTheme(THEME_CONSTANTS.BLUE)
+    }
+    else {
+      setTheme(THEME_CONSTANTS.LIGHT_ORANGE) 
+    }
+    
+    console.log(theme);
+  }
+
   const carouselBackButton = () => (
-    <TextSwitcher className="greeting-arrow" hoverable direction="left">
+    <TextSwitcher 
+      className={
+        classNameBuilder([
+          "greeting-arrow",
+          ELEMENT_TYPES.POINTER_ELEMENT
+        ])
+      }
+      direction="left"
+      hoverable 
+      offStateChildClassName={ELEMENT_TYPES.ICON}
+      onStateChildClassName={ELEMENT_TYPES.HOVERED_ICON}
+      onClick={themeChanger}
+    >
       <GoogleIcon icon="arrow_back"/>
     </TextSwitcher>
   )
 
   const carouselNextButton = () => (
-    <TextSwitcher className="greeting-arrow" hoverable direction="right">
+    <TextSwitcher className={
+      classNameBuilder([
+        "greeting-arrow",
+        ELEMENT_TYPES.POINTER_ELEMENT,
+        ELEMENT_TYPES.ICON
+      ])} 
+      direction="right" 
+      hoverable 
+      offStateChildClassName={ELEMENT_TYPES.ICON}
+      onStateChildClassName={ELEMENT_TYPES.HOVERED_ICON}
+      onClick={themeChanger}
+    >
       <GoogleIcon icon="arrow_forward"/>
     </TextSwitcher>
   )
 
   return (
-    <div className={`${CSS_CONSTANTS.SCREEN} ${props.theme}-theme greeting-screen`}>
-      <Background theme={props.theme}/>
+    <div 
+      className={classNameBuilder([
+        "greeting-screen",
+        CSS_CONSTANTS.SCREEN,
+        props.theme
+      ])}
+    >
+      <Background theme={theme}/>
       <div className="greeting-wrapper">
         <div className="greeting-screen-line greeting-screen-line-1">
           <GreetingScreenTextSwitcher id={0}/>

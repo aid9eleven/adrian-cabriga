@@ -1,5 +1,5 @@
 import { ReactNode, useEffect, useState } from "react";
-import { CSS_CONSTANTS } from "../constants/cssClassConstants";
+import { CSS_CONSTANTS } from "../styles/cssClassConstants";
 import { classNameBuilder } from "../util/stringBuilder";
 import "./TextSwitcher.css";
 
@@ -7,12 +7,14 @@ export interface ITextSwitcherProps {
   children?: ReactNode,
   className?: string,
   direction?: "up" | "down" | "left" | "right";
-  switched?: boolean;
   hoverable?: boolean;
-  onMouseLeave?: React.MouseEventHandler<HTMLDivElement>;
-  onClick?: React.MouseEventHandler<HTMLDivElement>;
-  onMouseOver?: React.MouseEventHandler<HTMLDivElement>;
+  offStateChildClassName?: string;
+  onStateChildClassName?: string;
   style?: React.CSSProperties;
+  switched?: boolean;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  onMouseLeave?: React.MouseEventHandler<HTMLDivElement>;
+  onMouseOver?: React.MouseEventHandler<HTMLDivElement>;
 }
 
 const TextSwitcher = (props: ITextSwitcherProps) => {
@@ -66,8 +68,18 @@ const TextSwitcher = (props: ITextSwitcherProps) => {
       <div 
         className={"text-switcher-children-wrapper"}
       >
-        <div className="text-switcher-on-state-child">{props.children}</div>
-        <div className="text-switcher-off-state-child">{props.children}</div>
+        <div className={classNameBuilder([
+          "text-switcher-on-state-child",
+          props.onStateChildClassName
+        ])}>
+          {props.children}
+        </div>
+        <div className={classNameBuilder([
+          "text-switcher-off-state-child",
+          props.offStateChildClassName
+        ])}>
+          {props.children}
+        </div>
       </div>
     </div>
   )

@@ -1,19 +1,18 @@
-import { useState } from "react";
-import { CSS_CONSTANTS } from "../constants/cssClassConstants"
+import { ELEMENT_TYPES, Theme } from "../styles/cssClassConstants";
+import { classNameBuilder } from "../util/stringBuilder";
+import "./Background.css"
 
 interface IBackgroundProps {
-  theme: "blue" | "light-orange";
+  theme: Theme;
 }
 
 const Background = (props: IBackgroundProps) => {
-  const [currentTheme, setCurrentTheme] = useState(props.theme);
 
   return (
-    <div className={`background background-${currentTheme}`}>
-      <div className={`transitioning-background background-blue ${props.theme === "blue" ? CSS_CONSTANTS.ON_STATE : ""}`}></div>
-      <div className={`transitioning-background background-light-orange ${props.theme === "light-orange" ? CSS_CONSTANTS.ON_STATE : ""}`}></div>
-      
-    </div>
+    <div className={classNameBuilder([
+      "background",
+      ELEMENT_TYPES.BACKGROUND
+    ])}/>
   )
 }
 

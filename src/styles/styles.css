@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis&family=Montserrat&family=Shadows+Into+Light&display=swap');
+/* 
+    font-family: 'Montserrat', sans-serif; https://fonts.google.com/specimen/Montserrat
+    font-family: 'Dosis', sans-serif; https://fonts.google.com/specimen/Dosis
+    font-family: 'Shadows Into Light', cursive; https://fonts.google.com/specimen/Shadows+Into+Light
+*/
+
+:root {
+    --light-gray-bg: #f1f3f4;
+    --very-light-blue-bg: #deeaf6;
+    --light-blue-bg: #8ab8e7;
+    --blue-gray-bg: #a2bfdc;
+    --dull-blue-bg: #567fa8;
+    --blue-bg: #4277ad;
+
+    --light-purple: #c6ceff;
+    --light-blue: #84b7fe;
+    --light-orange: #efc379;
+    --blue: #258bd6;
+    --dark-blue: #26415c;
+    --pink: #ffa4fc;
+    --dark-cyan: #64a3a3;
+}
+
+
+.th-bl .bg {
+  background-color: var(--blue-bg);
+}
+
+.th-bl .tx, .th-bl .ic {
+  color: white;
+}
+
+.th-bl .ht, .th-bl .hi {
+  color: var(--light-orange);
+}
+
+.th-bl .hlt, .th-bl .hli {
+  background-color: var(--dark-blue);
+  color: white;
+}
+
+.th-lo .bg {
+  background-color: var(--light-orange);
+}
+
+.th-lo .tx, .th-lo .ic {
+  color: white;
+}
+
+.th-lo .ht, .th-lo .hi {
+  color: var(--dark-blue);
+}
+
+.th-lo .hlt, .th-lo .hli {
+  background-color: var(--dark-blue);
+  color: white;
+}
+
+.te {
+  transition: 0.3s ease-in-out;
+}
+
+.pe {
+  cursor: pointer;
+}
