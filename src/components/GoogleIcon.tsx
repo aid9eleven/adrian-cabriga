@@ -1,15 +1,18 @@
 import { classNameBuilder } from "../util/stringBuilder";
 
-export const GOOGLE_ICON_TYPE = {
-  BRUSH: "brush",
-  CODE: "code",
-  FACE: "face",
-  MAIL: "mail",
-  SEND: "send",
-}
+type GoogleIconType =
+  "brush"
+  | "code"
+  |"face"
+  | "mail"
+  | "send"
+  | "arrow_back"
+  | "arrow_forward"
+  | "arrow_back_ios"
+  | "arrow_forward_ios"
 
 interface IGoogleIconProps {
-  icon: string;
+  icon: GoogleIconType;
   className?: string;
   onClick?: React.MouseEventHandler<HTMLDivElement>;
   onMouseOver?: React.MouseEventHandler<HTMLDivElement>;

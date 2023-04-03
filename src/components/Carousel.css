@@ -1,0 +1,35 @@
+.carousel {
+  display: flex;
+  align-items: center;
+}
+
+.carousel-body {
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-back-button {
+  margin-right: 1rem;
+}
+
+.carousel-next-button {
+  margin-left: 1rem;
+}
+
+.carousel-wrapper {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.horizontal .carousel-wrapper {
+  flex-direction: row;
+}
+
+.carousel-wrapper > * {
+  width: 100%;
+  flex-shrink: 0;
+}

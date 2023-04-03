@@ -1,6 +1,8 @@
-import { useEffect, useReducer } from "react";
+import { Fragment, useEffect, useReducer } from "react";
 import Timer from "../classes/Timer";
 import Background from "../components/Background";
+import Carousel from "../components/Carousel";
+import { GoogleIcon } from "../components/GoogleIcon";
 import TextSwitcher from "../components/TextSwitcher";
 import { CSS_CONSTANTS } from "../constants/cssClassConstants";
 
@@ -65,7 +67,38 @@ const textSwitcherInitialStates: ITextSwitcherState[] = [
   },
   {
     id: 7,
+    text: "an",
+    direction: "right",
+    switched: false,
+    timer: new Timer()
+  },
+  {
+    id: 8,
     text: "software developer",
+    className: "emphasized",
+    direction: "down",
+    switched: false,
+    timer: new Timer()
+  },
+  {
+    id: 9,
+    text: "graphic designer",
+    className: "emphasized",
+    direction: "down",
+    switched: false,
+    timer: new Timer()
+  },
+  {
+    id: 10,
+    text: "artist",
+    className: "emphasized",
+    direction: "down",
+    switched: false,
+    timer: new Timer()
+  },
+  {
+    id: 11,
+    text: "computer engineer",
     className: "emphasized",
     direction: "down",
     switched: false,
@@ -112,17 +145,16 @@ const GreetingScreenTextSwitcher = (props: IGreetingScreenTextSwitcherProps) => 
   const [textSwitcherStates, dispatch] = useReducer(reducer, textSwitcherInitialStates);
 
   const handleTextSwitcherOnMouseOver = (id: number) => {
-    dispatch({ type: "SWITCH_ON", id: id});
+    dispatch({ type: "SWITCH_ON", id: id });
   }
 
   const handleTextSwitcherOnMouseLeave = (id: number) => {
     textSwitcherStates[id].timer.unpause();
   }
 
-
   useEffect(() => {
     setInterval(() => {
-      dispatch({ type: "UPDATE_TIMER", id: 0});
+      dispatch({ type: "UPDATE_TIMER", id: 0 });
     }, 100)
     
     textSwitcherStates.map((textSwitcherState) => {
@@ -148,33 +180,67 @@ const GreetingScreenTextSwitcher = (props: IGreetingScreenTextSwitcherProps) => 
   )
 }
 
+interface IGreetingScreenLineTwoProps {
+  ids: number[]
+}
+
+const GreetingScreenLineTwo = (props: IGreetingScreenLineTwoProps) => (
+  <div className="greeting-screen-line greeting-screen-line-2">
+    {
+      props.ids.map((id, index) => (
+        <Fragment key={index}>
+          <GreetingScreenTextSwitcher id={id}/>
+          {index < props.ids.length - 1 ? <div>&nbsp;</div> : <div>.</div>}
+        </Fragment>
+      ))
+    }
+  </div>
+)
+
 interface IGreetingScreenProps {
   theme: "blue" | "light-orange"
 }
 
 const GreetingScreen = (props: IGreetingScreenProps) => {
+  const carouselBackButton = () => (
+    <TextSwitcher className="greeting-arrow" hoverable direction="left">
+      <GoogleIcon icon="arrow_back"/>
+    </TextSwitcher>
+  )
+
+  const carouselNextButton = () => (
+    <TextSwitcher className="greeting-arrow" hoverable direction="right">
+      <GoogleIcon icon="arrow_forward"/>
+    </TextSwitcher>
+  )
+
   return (
     <div className={`${CSS_CONSTANTS.SCREEN} ${props.theme}-theme greeting-screen`}>
       <Background theme={props.theme}/>
-      <div className="greeting-screen-line greeting-screen-line-1">
-        <GreetingScreenTextSwitcher id={0}/>
-        <div>,&nbsp;</div>
-        <GreetingScreenTextSwitcher id={1}/>
-        <div>&nbsp;</div>
-        <GreetingScreenTextSwitcher id={2}/>
-        <div>&nbsp;</div>
-        <GreetingScreenTextSwitcher id={3}/>
-        <div>.</div>
-      </div>
-      <div className="greeting-screen-line greeting-screen-line-2">
-        <GreetingScreenTextSwitcher id={4}/>
-        <div>&nbsp;</div>
-        <GreetingScreenTextSwitcher id={5}/>
-        <div>&nbsp;</div>
-        <GreetingScreenTextSwitcher id={6}/>
-        <div>&nbsp;</div>
-        <GreetingScreenTextSwitcher id={7}/>
-        <div>.</div>
+      <div className="greeting-wrapper">
+        <div className="greeting-screen-line greeting-screen-line-1">
+          <GreetingScreenTextSwitcher id={0}/>
+          <div>,&nbsp;</div>
+          <GreetingScreenTextSwitcher id={1}/>
+          <div>&nbsp;</div>
+          <GreetingScreenTextSwitcher id={2}/>
+          <div>&nbsp;</div>
+          <GreetingScreenTextSwitcher id={3}/>
+          <div>.</div>
+        </div>
+        <Carousel 
+          backButton={carouselBackButton()}
+          nextButton={carouselNextButton()}
+          style={{
+            width: "47rem",
+            height: "6rem"
+          }}
+        >
+          <GreetingScreenLineTwo ids={[4, 5, 6, 8]}/>
+          <GreetingScreenLineTwo ids={[4, 5, 6, 9]}/>
+          <GreetingScreenLineTwo ids={[4, 5, 7, 10]}/>
+          <GreetingScreenLineTwo ids={[4, 5, 6, 11]}/>
+        </Carousel>
       </div>
     </div>
   )

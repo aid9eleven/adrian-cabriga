@@ -33,10 +33,13 @@
     width: 100%;
     left: 0;
     top: 0;
-    background-color: var(--blue-bg);
+    z-index: -1;
 }
 
 .transitioning-background {
+    position: absolute;
+    left: 0;
+    top: 0;
     height: 100%;
     width: 0;
     transition: width 0.3s ease-in-out;
@@ -57,6 +60,25 @@
 .greeting-screen {
     position: relative;
     display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.greeting-arrow {
+    cursor: pointer;
+}
+
+.greeting-arrow .google-icon {
+    color: white;
+    font-size: 5rem;
+}
+
+.greeting-arrow .text-switcher-on-state-child .google-icon {
+    color: var(--dark-blue);
+}
+
+.greeting-wrapper {
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -71,6 +93,10 @@
     transform: scaleX(80%);
 }
 
+.greeting-screen-line-2 {
+    font-size: 3.5rem;
+}
+
 .greeting-screen-line .text-switcher-on-state-child {
     color: var(--light-orange);
 }
@@ -80,10 +106,6 @@
     color: white;
 }
 
-.greeting-screen-line .emphasized .text-switcher-on-state-child {
-    background-color: var(--dark-blue);
-    color: white;
-}
 
 /* overriding classes */
 .screen {
