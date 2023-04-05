@@ -4,37 +4,6 @@
     user-select: none;
 }
 
-.greeting-screen {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.greeting-arrow .google-icon {
-    font-size: 5rem;
-}
-
-.greeting-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.greeting-screen-line {
-    display: flex;
-    justify-content: center;
-    color: white;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 5rem;
-    transform: scaleX(80%);
-}
-
-.greeting-screen-line-2 {
-    font-size: 3.5rem;
-}
-
 /* overriding classes */
 .screen {
     height: 100vh !important;
@@ -53,6 +22,6 @@
     color: white;
 }
 
-.light-orange-theme .text-switcher-on-state-child {
+.light-orange-theme .dev-switcher-on-state-child {
     color: var(--dark-blue);
 }

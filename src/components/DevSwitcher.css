@@ -1,0 +1,54 @@
+.dev-switcher {
+  overflow: hidden;
+  position: relative;
+  white-space: nowrap;
+}
+
+.dev-switcher-base {
+  visibility: hidden;
+}
+
+.dev-switcher.on-state.up .dev-switcher-children-wrapper {
+  top: -100%;
+}
+
+.dev-switcher.on-state.down .dev-switcher-children-wrapper {
+  top: 0;
+}
+
+.dev-switcher.on-state.left .dev-switcher-children-wrapper {
+  left: -100%;
+}
+
+.dev-switcher.on-state.right .dev-switcher-children-wrapper {
+  left: 0;
+}
+
+.dev-switcher.up .dev-switcher-children-wrapper {
+  flex-direction: column-reverse;
+  top: 0;
+}
+
+.dev-switcher.down .dev-switcher-children-wrapper {
+  flex-direction: column;
+  top: -100%;
+}
+
+.dev-switcher.left .dev-switcher-children-wrapper {
+  flex-direction: row-reverse;
+  top: 0;
+  left: 0;
+}
+
+.dev-switcher.right .dev-switcher-children-wrapper {
+  flex-direction: row;
+  top: 0;
+  left: -100%;
+}
+
+.dev-switcher-children-wrapper {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  transition: 0.2s ease-in-out;
+}

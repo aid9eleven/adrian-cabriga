@@ -1,23 +1,25 @@
-import { ReactNode, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { CSS_CONSTANTS } from "../styles/cssClassConstants";
 import { classNameBuilder } from "../util/stringBuilder";
-import "./TextSwitcher.css";
+import "./DevSwitcher.css";
 
-export interface ITextSwitcherProps {
-  children?: ReactNode,
+export interface IDevSwitcherProps {
+  children?: React.ReactNode,
   className?: string,
   direction?: "up" | "down" | "left" | "right";
+  height?: string | number,
   hoverable?: boolean;
   offStateChildClassName?: string;
   onStateChildClassName?: string;
   style?: React.CSSProperties;
   switched?: boolean;
+  width?: string | number,
   onClick?: React.MouseEventHandler<HTMLDivElement>;
   onMouseLeave?: React.MouseEventHandler<HTMLDivElement>;
   onMouseOver?: React.MouseEventHandler<HTMLDivElement>;
 }
 
-const TextSwitcher = (props: ITextSwitcherProps) => {
+const DevSwitcher = (props: IDevSwitcherProps) => {
   const [switched, setSwitched] = useState(false);
   const [direction, setDirection] = useState("up");
 
@@ -53,31 +55,37 @@ const TextSwitcher = (props: ITextSwitcherProps) => {
     <div 
       className={
         classNameBuilder([
-          "text-switcher",
+          "dev-switcher",
           props.className,
           `${switched ? CSS_CONSTANTS.ON_STATE : ""}`,
           direction
         ])
       }
+      style={{...props.style, height: props.height, width: props.width}}
       onClick={props.onClick}
       onMouseOver={props.onMouseOver ?? handleMouseOver}
       onMouseLeave={props.onMouseLeave ?? handleMouseLeave}
-      style={props.style}
     >
-      <div className="text-switcher-base">{props.children}</div>
+      <div className="dev-switcher-base">{props.children}</div>
       <div 
-        className={"text-switcher-children-wrapper"}
+        className={"dev-switcher-children-wrapper"}
       >
-        <div className={classNameBuilder([
-          "text-switcher-on-state-child",
-          props.onStateChildClassName
-        ])}>
+        <div 
+          className={classNameBuilder([
+            "dev-switcher-on-state-child",
+            props.onStateChildClassName
+          ])}
+          style={{height: props.height, width: props.width}}
+        >
           {props.children}
         </div>
-        <div className={classNameBuilder([
-          "text-switcher-off-state-child",
-          props.offStateChildClassName
-        ])}>
+        <div 
+          className={classNameBuilder([
+            "dev-switcher-off-state-child",
+            props.offStateChildClassName
+          ])}
+          style={{height: props.height, width: props.width}}
+        >
           {props.children}
         </div>
       </div>
@@ -85,4 +93,4 @@ const TextSwitcher = (props: ITextSwitcherProps) => {
   )
 }
 
-export default TextSwitcher;
+export default DevSwitcher;

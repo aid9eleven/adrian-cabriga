@@ -31,8 +31,16 @@
   color: white;
 }
 
+.th-bl .bk {
+  background-color: white;
+}
+
 .th-bl .ht, .th-bl .hi {
   color: var(--light-orange);
+}
+
+.th-bl .hb {
+  background-color: var(--light-orange);
 }
 
 .th-bl .hlt, .th-bl .hli {
@@ -48,8 +56,16 @@
   color: white;
 }
 
+.th-lo .bk {
+  background-color: white;
+}
+
 .th-lo .ht, .th-lo .hi {
   color: var(--dark-blue);
+}
+
+.th-lo .hb {
+  background-color: var(--dark-blue);
 }
 
 .th-lo .hlt, .th-lo .hli {
@@ -63,4 +79,8 @@
 
 .pe {
   cursor: pointer;
+}
+
+.ft-ms {
+  font-family: 'Montserrat', sans-serif;
 }

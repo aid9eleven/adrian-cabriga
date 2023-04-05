@@ -1,0 +1,45 @@
+.greeting-screen {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.greeting-arrow.left {
+  margin-right: 5rem;
+}
+
+.greeting-arrow.right {
+  margin-left: 5rem;
+}
+
+.greeting-arrow .google-icon {
+  font-size: 5rem;
+}
+
+.greeting-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.greeting-screen-line {
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-size: 5rem;
+}
+
+.greeting-screen-line-2 {
+  font-size: 3.5rem;
+}
+
+.greeting-screen-bullets {
+  display: flex;
+  margin-top: 2rem;
+}
+
+.greeting-screen-bullets > * {
+  margin: 0 10px;
+}

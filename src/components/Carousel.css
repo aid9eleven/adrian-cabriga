@@ -1,20 +1,8 @@
 .carousel {
   display: flex;
   align-items: center;
-}
-
-.carousel-body {
-  display: flex;
   position: relative;
   overflow: hidden;
-}
-
-.carousel-back-button {
-  margin-right: 1rem;
-}
-
-.carousel-next-button {
-  margin-left: 1rem;
 }
 
 .carousel-wrapper {

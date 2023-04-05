@@ -2,11 +2,7 @@ import { ELEMENT_TYPES, Theme } from "../styles/cssClassConstants";
 import { classNameBuilder } from "../util/stringBuilder";
 import "./Background.css"
 
-interface IBackgroundProps {
-  theme: Theme;
-}
-
-const Background = (props: IBackgroundProps) => {
+const Background = () => {
 
   return (
     <div className={classNameBuilder([
